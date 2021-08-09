@@ -72,8 +72,8 @@ const overviewSchema = new mongoose.Schema({
     }],
 
     users_by_device: [{
-        device: mongoose.Schema.Types.Mixed,
-        total: mongoose.Schema.Types.Mixed,
+        device: [String],
+        total: [Number],
 
         type : mongoose.Schema.Types.Mixed,
         trim : true,
@@ -85,6 +85,8 @@ const overviewSchema = new mongoose.Schema({
     owner : {
         type : mongoose.Schema.Types.ObjectId,
         required : true,
+        trim: true,
+        unique: true,
         ref : 'user'
     }
 
@@ -93,9 +95,9 @@ const overviewSchema = new mongoose.Schema({
 overviewSchema.virtual('users', {
     ref: 'user',
     localField: '_id',
-    foreignField: 'overview'
+    foreignField: 'overView'
 });
 
-const overview = mongoose.model('overview', overviewSchema);
+const overview = mongoose.model('overView', overviewSchema);
 
 module.exports = overview;

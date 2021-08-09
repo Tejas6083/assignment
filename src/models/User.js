@@ -14,13 +14,13 @@ const userSchema = new mongoose.Schema({
         maxlength: 30,
     },
     overview: {
-        type: mongoose.userSchema.Types.ObjectId,
-        ref: 'overview'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'overView'
     }
 });
 
-userSchema.virtual('overview', {
-    ref: 'overview',
+userSchema.virtual('overView', {
+    ref: 'overView',
     localField: '_id',
     foreignField: 'owner'
 });

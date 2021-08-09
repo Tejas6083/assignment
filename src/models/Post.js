@@ -24,3 +24,7 @@ postSchema.virtual('users', {
     localField: 'user',
     foreignField: '_id'
 });
+
+const post = mongoose.model('post', postSchema);
+
+module.exports = post;
