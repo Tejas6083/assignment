@@ -21,9 +21,13 @@ router.post('/overview', async (req,res) => {
 router.get('/overview', async (req,res) => {
 
     try {
-        const overview = await Overview.find({});
+        const overview = await Overview.findOne({owner: req.query.user_id});
 
-        res.status(200).send(overview);
+        if(!overview) {
+            return res.status(404).send({error: "User not found"});
+        }
+
+        return res.status(200).send(overview);
 
     } catch(error) {
         return res.status(400).send(error);
@@ -43,7 +47,7 @@ router.patch('/overview', async (req,res) => {
             return res.status(400).send({error: "Invalid update. The choosen field is not available or not allowed to update"});
         }
 
-        const overview = await Overview.findOne({owner : req.params.user_id});
+        const overview = await Overview.findOne({owner : req.query.user_id});
 
         if (!overview) {
 
@@ -67,7 +71,7 @@ router.patch('/overview', async (req,res) => {
 
 router.delete('/overview', async (req,res) => {
     try {
-        const overview = await Overview.findOneAndDelete({owner: req.params.id});
+        const overview = await Overview.findOneAndDelete({owner: req.query.user_id});
         return res.status(200).send(overview);
 
     } catch (error) {

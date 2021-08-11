@@ -16,11 +16,21 @@ const userSchema = new mongoose.Schema({
     overview: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'overView'
+    },
+    posts: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user_post'
     }
 });
 
 userSchema.virtual('overView', {
     ref: 'overView',
+    localField: '_id',
+    foreignField: 'owner'
+});
+
+userSchema.virtual('user_post', {
+    ref: 'user_post',
     localField: '_id',
     foreignField: 'owner'
 });
