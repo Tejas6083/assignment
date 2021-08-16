@@ -8,12 +8,12 @@ const overview = require("./routes/OverviewRoute");
 const post = require("./routes/PostRoute");
 
 app.use(express.json());
-app.use(cors({
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 200
-  }));
+// app.use(cors({
+//     "origin": "*",
+//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     "preflightContinue": false,
+//     "optionsSuccessStatus": 200
+//   }));
 
 app.use(user);
 app.use(overview);
